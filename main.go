@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"os"
 
-	"server-panel/internal/auth"
-	"server-panel/internal/files"
-	"server-panel/internal/logs"
-	"server-panel/internal/services"
-	"server-panel/internal/terminal"
+	"webminal/internal/auth"
+	"webminal/internal/files"
+	"webminal/internal/logs"
+	"webminal/internal/services"
+	"webminal/internal/terminal"
 )
 
 //go:embed web
@@ -20,7 +20,7 @@ var webFS embed.FS
 
 func main() {
 	port := getEnv("PANEL_PORT", "8080")
-	dataDir := getEnv("PANEL_DATA_DIR", "/etc/server-panel")
+	dataDir := getEnv("PANEL_DATA_DIR", "/etc/webminal")
 	files.Root = getEnv("PANEL_ROOT", "/")
 
 	token, err := auth.LoadOrCreateToken(dataDir)
@@ -53,7 +53,7 @@ func main() {
 
 	addr := fmt.Sprintf(":%s", port)
 	fmt.Println("========================================")
-	fmt.Println(" Server Panel démarré ✅")
+	fmt.Println(" Webminal démarré ✅")
 	fmt.Printf(" URL locale   : http://localhost:%s\n", port)
 	fmt.Printf(" Token d'accès: %s\n", token)
 	fmt.Println(" (stocké dans", auth.TokenPath(dataDir), ")")

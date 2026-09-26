@@ -1,4 +1,4 @@
-module server-panel
+module webminal
 
 go 1.22
 

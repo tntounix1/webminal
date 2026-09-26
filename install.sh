@@ -2,12 +2,12 @@
 set -euo pipefail
 
 # ====== À adapter avec ton propre dépôt une fois publié sur GitHub ======
-REPO="TON_USER/server-panel"
+REPO="TON_USER/webminal"
 # ==========================================================================
 
-INSTALL_DIR="/opt/server-panel"
-BIN_PATH="$INSTALL_DIR/server-panel"
-SERVICE_PATH="/etc/systemd/system/server-panel.service"
+INSTALL_DIR="/opt/webminal"
+BIN_PATH="$INSTALL_DIR/webminal"
+SERVICE_PATH="/etc/systemd/system/webminal.service"
 
 if [ "$(id -u)" -ne 0 ]; then
   echo "❌ Lance ce script en root (ou via sudo)."
@@ -53,14 +53,14 @@ esac
 echo "📦 Récupération de la dernière version pour linux-$GOARCH..."
 mkdir -p "$INSTALL_DIR"
 
-LATEST_URL="https://github.com/$REPO/releases/latest/download/server-panel-linux-$GOARCH"
+LATEST_URL="https://github.com/$REPO/releases/latest/download/webminal-linux-$GOARCH"
 curl -fsSL "$LATEST_URL" -o "$BIN_PATH"
 chmod +x "$BIN_PATH"
 
 echo "⚙️  Configuration du service systemd..."
 cat > "$SERVICE_PATH" <<EOF
 [Unit]
-Description=Server Panel
+Description=Webminal
 After=network.target
 
 [Service]
@@ -75,16 +75,16 @@ WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl enable server-panel
-systemctl restart server-panel
+systemctl enable webminal
+systemctl restart webminal
 
 sleep 1
 IP="$(curl -fsSL ifconfig.me || hostname -I | awk '{print $1}')"
-TOKEN="$(cat /etc/server-panel/token 2>/dev/null || echo '(voir les logs : journalctl -u server-panel -n 20)')"
+TOKEN="$(cat /etc/webminal/token 2>/dev/null || echo '(voir les logs : journalctl -u webminal -n 20)')"
 
 echo ""
 echo "========================================"
-echo " ✅ Server Panel est installé et lancé !"
+echo " ✅ Webminal est installé et lancé !"
 echo ""
 echo " Ouvre ce lien dans le navigateur de ton iPad/phone :"
 echo "   http://$IP:$PORT"

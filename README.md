@@ -1,4 +1,4 @@
-# Server Panel
+# Webminal
 
 Panneau d'administration web léger pour gérer un serveur Linux (VPS) depuis
 n'importe quel navigateur — iPad, phone, peu importe. Pas d'app à installer
@@ -20,18 +20,18 @@ Voici le circuit complet :
 
 ### 1. Publier le projet sur GitHub
 
-1. Crée un nouveau dépôt sur GitHub (par ex. `server-panel`), public ou privé.
+1. Crée un nouveau dépôt sur GitHub (par ex. `webminal`), public ou privé.
 2. Pousse tout ce dossier dedans :
    ```bash
-   cd server-panel
+   cd webminal
    git init
    git add .
    git commit -m "Premier commit"
    git branch -M main
-   git remote add origin https://github.com/TON_USER/server-panel.git
+   git remote add origin https://github.com/TON_USER/webminal.git
    git push -u origin main
    ```
-3. Ouvre `install.sh` et remplace `TON_USER/server-panel` par le vrai nom
+3. Ouvre `install.sh` et remplace `TON_USER/webminal` par le vrai nom
    de ton dépôt (ligne `REPO=...`).
 
 ### 2. Déclencher la compilation automatique
@@ -54,7 +54,7 @@ Connecte-toi une seule fois en SSH à ton VPS (ou demande à quelqu'un de le
 faire pour toi), et lance :
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/TON_USER/server-panel/main/install.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/TON_USER/webminal/main/install.sh | sudo bash
 ```
 
 Le script :
